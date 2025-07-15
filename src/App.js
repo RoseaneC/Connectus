@@ -1,7 +1,7 @@
 // src/App.js
 // Este arquivo contém TODO o código do seu aplicativo Connectus,
 // incluindo a configuração do Firebase, autenticação, navegação e o chat.
-// O objetivo é simplificar a configuração e resolver problemas de "Module not found".
+// AGORA COM AS NOVAS CREDENCIAIS DO PROJETO 'connectus-final-auth'.
 
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
@@ -19,15 +19,15 @@ import {
 } from 'firebase/auth';
 import { getFirestore, collection, query, orderBy, addDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
 
-// Suas credenciais do Firebase (HARDCODED AQUI PARA SIMPLIFICAR)
-// Certifique-se de que estas são suas credenciais CORRETAS do projeto 'sample-firebase-ai-app-f4222'
+// Suas NOVAS credenciais do Firebase (do projeto 'connectus-final-auth')
 const firebaseConfig = {
-  apiKey: "AIzaSyA1CeLsjXj5DbFJF0IU5bABRpW-5vt2Tlo",
-  authDomain: "sample-firebase-ai-app-f4222.firebaseapp.com",
-  projectId: "sample-firebase-ai-app-f4222",
-  storageBucket: "sample-firebase-ai-app-f4222.firebasestorage.app",
-  messagingSenderId: "1036482156436",
-  appId: "1:1036482156436:web:9f9cb9d6edd1344ec6e181"
+  apiKey: "AIzaSyD13dNS5_QJnE4R8QEqG2meHtLt9P2kLLU",
+  authDomain: "connectus-final-auth.firebaseapp.com",
+  projectId: "connectus-final-auth",
+  storageBucket: "connectus-final-auth.firebasestorage.app",
+  messagingSenderId: "889767039572",
+  appId: "1:889767039572:web:bb2f0c82c96bebfdfc93c1"
+  // measurementId: "G-L0MXM40B86" // Removido para simplificar, já que não estamos usando Analytics agora
 };
 
 // --- AuthContext (Integrado diretamente aqui) ---
@@ -57,6 +57,10 @@ export const AuthProvider = ({ children }) => {
     // Tenta definir o appId a partir da variável global __app_id (ambiente Canvas)
     if (typeof window !== 'undefined' && typeof window.__app_id !== 'undefined') {
       setAppId(window.__app_id);
+    } else {
+      // Se não estiver no Canvas, usa o projectId do firebaseConfig como appId
+      // Isso é uma boa prática para ter um appId consistente localmente
+      setAppId(firebaseConfig.projectId);
     }
 
     // Listener para mudanças no estado de autenticação do Firebase
@@ -75,35 +79,6 @@ export const AuthProvider = ({ children }) => {
     // Removido a tentativa automática de signInWithCustomToken ou signInAnonymously
     // quando rodando localmente, para evitar conflitos com o token do Canvas
     // e garantir que o login seja feito via formulário.
-    /*
-    const initializeAuthWithCanvasToken = async () => {
-      try {
-        const initialAuthToken = typeof window !== 'undefined' && typeof window.__initial_auth_token !== 'undefined' ? window.__initial_auth_token : null;
-
-        if (initialAuthToken && authInstance) {
-          await signInWithCustomToken(authInstance, initialAuthToken);
-          console.log("Connectus: Login com token personalizado bem-sucedido!");
-        } else if (authInstance) {
-          await signInAnonymously(authInstance);
-          console.log("Connectus: Login anônimo bem-sucedido!");
-        }
-      } catch (error) {
-        console.error("Connectus: Erro na autenticação inicial com token Canvas:", error);
-      }
-    };
-
-    const timeoutId = setTimeout(() => {
-        if (!authInstance.currentUser) {
-            initializeAuthWithCanvasToken();
-        }
-    }, 1000);
-
-    return () => {
-        unsubscribe();
-        clearTimeout(timeoutId);
-    };
-    */
-    // Apenas retorna o unsubscribe para o onAuthStateChanged
     return () => unsubscribe();
   }, []);
 
@@ -650,7 +625,14 @@ function App() {
             </Routes>
           </main>
         </div>
-      
+        {/* Tailwind CSS and Inter Font */}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+          body {
+            font-family: 'Inter', sans-serif;
+          }
+        `}} />
       </AuthProvider>
     </Router>
   );
