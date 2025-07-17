@@ -1,6 +1,6 @@
 # 🧩 Connectus – Plataforma de Conexão Antidesistência
 
-![Banner do projeto](https://via.placeholder.com/1000x300?text=Banner+do+Projeto+Connectus)
+![Banner do projeto](https://sdmntpreastus2.oaiusercontent.com/files/00000000-e010-61f6-8ba7-9e101b63e8cb/raw?se=2025-07-17T21%3A58%3A14Z&sp=r&sv=2024-08-04&sr=b&scid=a13943a5-c39e-57a5-8812-e5a31a744626&skoid=31bc9c1a-c7e0-460a-8671-bf4a3c419305&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-17T04%3A20%3A55Z&ske=2025-07-18T04%3A20%3A55Z&sks=b&skv=2024-08-04&sig=y2zi7JMez5f3m2tWAEaoYUGOh%2BGAFOnldl5l/g10veI%3D)
 
 ---
 
